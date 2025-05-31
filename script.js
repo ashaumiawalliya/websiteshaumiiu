@@ -114,7 +114,6 @@ function updateKeranjang() {
             <button onclick="tambahQuantity('${item.id}')">+</button>
         </div>
             <p>Total : Rp.${(item.price * item.quantity).toLocaleString()}</p>
-            <p>Pembayaran hanya melalui COD</p>
             <hr>
         `;
         cart_items.appendChild(div);
@@ -126,6 +125,7 @@ function updateKeranjang() {
     const totalDiv = document.createElement("div");
     totalDiv.innerHTML = `
         <h3>Total Belanja: Rp.${total.toLocaleString()}</h3>
+        <p>Pembayaran hanya melalui COD</p>
     `;
     cart_items.appendChild(totalDiv);
 
