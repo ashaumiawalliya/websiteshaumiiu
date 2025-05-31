@@ -125,8 +125,8 @@ function updateKeranjang() {
     const totalDiv = document.createElement("div");
     totalDiv.innerHTML = `
         <h3>Total Belanja: Rp.${total.toLocaleString()}</h3>
-        <p>Pembayaran hanya melalui COD</p>
     `;
+    totalDiv.innerHTML = `<p>Pembayaran hanya melalui COD</p>`;
     cart_items.appendChild(totalDiv);
 
     // Tambahkan tombol checkout jika belum ada
