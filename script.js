@@ -77,6 +77,25 @@ function tambahkeranjang(id){
 
     updateKeranjang();
 }
+function tambahQuantity(id) {
+    const item = cart.find(i => i.id === id);
+    if (item) {
+        item.quantity += 1;
+        updateKeranjang();
+    }
+}
+
+function kurangiQuantity(id) {
+    const itemIndex = cart.findIndex(i => i.id === id);
+    if (itemIndex > -1) {
+        if (cart[itemIndex].quantity > 1) {
+            cart[itemIndex].quantity -= 1;
+        } else {
+            cart.splice(itemIndex, 1); // Hapus dari keranjang jika quantity = 0
+        }
+        updateKeranjang();
+    }
+}
 
 function updateKeranjang() {
     let cart_items = document.getElementById("cart-items");
@@ -89,6 +108,11 @@ function updateKeranjang() {
         div.innerHTML = `
             <b>${item.name}</b>
             <p>Rp.${item.price.toLocaleString()} x ${item.quantity} pcs</p>
+            <div style="display:flex; gap: 8px; align-items:center;">
+            <button onclick="kurangiQuantity('${item.id}')">-</button>
+            <span>${item.quantity}</span>
+            <button onclick="tambahQuantity('${item.id}')">+</button>
+        </div>
             <p>Total : Rp.${(item.price * item.quantity).toLocaleString()}</p>
             <hr>
         `;
